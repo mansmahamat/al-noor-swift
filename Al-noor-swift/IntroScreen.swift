@@ -7,9 +7,67 @@
 
 import SwiftUI
 
+
+
 struct IntroScreen: View {
+    @AppStorage("isFirstTime") private var isFirstTime: Bool = true
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(spacing: 15) {
+            
+            Image("welcome_screen")
+                          .resizable()
+                          .scaledToFill()
+                          .frame(width: 100, height: 100)
+            
+            Text("What's New in\n Al Noor")
+                .font(.largeTitle.bold())
+                .multilineTextAlignment(.center)
+                .padding(.top, 65)
+                .padding(.bottom, 35)
+            
+            VStack(alignment: .leading, spacing: 25, content: {
+                ForEach(points) { point in
+                    PointView(symbol: point.symbol, title: point.title, subtitle: point.subtitle)
+                }
+            })
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 15)
+            
+            Spacer(minLength: 10)
+            
+            Button(action: {
+                isFirstTime = false
+            }, label: {
+                Text("Continue")
+                    .fontWeight(.bold)
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                    .padding(.vertical, 14)
+                    .background(Color.green, in: .rect(cornerRadius: 12))
+                    .contentShape(.rect)
+            })
+        }
+        .padding(15)
+    }
+    
+    @ViewBuilder
+    func PointView(symbol: String, title: String, subtitle: String) -> some View {
+        HStack(spacing: 20) {
+            Image(systemName: symbol)
+                .font(.largeTitle)
+                .foregroundStyle(Color.green)
+                .frame(width: 45)
+            
+            VStack(alignment: .leading, content: {
+               Text(title)
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                
+               Text(subtitle)
+                    .foregroundColor(.gray)
+            })
+        }
     }
 }
 

@@ -5,14 +5,24 @@
 //  Created by Mansour Mahamat-salle on 23/04/2024.
 //
 
+import Foundation
 import SwiftUI
 
-struct DetailSurahModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+struct SurahDetailModel : Codable{
+    var data : DataDetail
+}
+struct DataDetail : Codable{
+    var name : String
+    var englishName : String
+    var englishNameTranslation : String
+    var revelationType : String
+    var numberOfAyahs : Int
+    var ayahs : [Ayahs]
 }
 
-#Preview {
-    DetailSurahModel()
+struct Ayahs : Codable, Identifiable{
+    var number : Int
+    var audio : String
+    var text : String
+    var id : Int{number}
 }

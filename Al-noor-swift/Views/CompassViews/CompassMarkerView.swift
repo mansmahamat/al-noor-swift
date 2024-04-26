@@ -8,11 +8,37 @@
 import SwiftUI
 
 struct CompassMarkerView: View {
+    let marker: Marker
+    let compassDegress: Double
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Capsule()
+                .frame(width: self.capsuleWidth(), height: self.capsuleHeight())
+                .foregroundColor(self.capsuleColor())
+                .padding(.bottom, 120)
+            
+           Text(marker.label)
+                .fontWeight(.bold)
+                .rotationEffect(self.textAngle())
+                .padding(.bottom, -130)
+                .padding(.bottom, -10)
+        }.rotationEffect(Angle(degrees: marker.degrees))
     }
-}
-
-#Preview {
-    CompassMarkerView()
+    
+    private func capsuleWidth() -> CGFloat {
+        return self.marker.degrees == 120 ? 7 : 3
+    }
+    
+    private func capsuleHeight() -> CGFloat {
+        return self.marker.degrees == 120 ? 40 : 30
+    }
+    
+    private func capsuleColor() -> Color {
+        return self.marker.degrees == 120 ? .red : .gray
+    }
+    
+    private func textAngle() -> Angle {
+        return Angle(degrees: -self.compassDegress - self.marker.degrees)
+    }
 }

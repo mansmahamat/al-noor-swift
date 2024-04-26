@@ -5,14 +5,30 @@
 //  Created by Mansour Mahamat-salle on 23/04/2024.
 //
 
+
 import SwiftUI
 
-struct Tab: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+enum Tab: String {
+    case home = "Home"
+    case qibla = "Qibla"
+    case quran = "QuranView"
+   
+    
+    @ViewBuilder
+    var tabContent:some View {
+        switch self {
+        case .home:
+            Image(systemName: "calendar")
+            Text(self.rawValue)
+        case .qibla:
+            Image(systemName: "safari")
+            Text(self.rawValue)
+        case .quran:
+            Image(systemName: "book")
+            Text(self.rawValue)
+//        case .settings:
+//            Image(systemName: "gearshape")
+//            Text(self.rawValue)
+        }
     }
-}
-
-#Preview {
-    Tab()
 }

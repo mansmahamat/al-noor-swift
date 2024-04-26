@@ -7,15 +7,27 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
+    
+    @State private var activeTab: Tab = .home
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        TabView(selection: $activeTab) {
+                       Home()
+                           .tag(Tab.home)
+                           .tabItem { Tab.home.tabContent }
+                       Qibla()
+                           .tag(Tab.qibla)
+                           .tabItem { Tab.qibla.tabContent }
+                       QuranView()
+                           .tag(Tab.quran)
+                           .tabItem { Tab.quran.tabContent }
+//                       Settings()
+//                           .tag(Tab.settings)
+//                           .tabItem { Tab.settings.tabContent }
+                   }
+        
     }
 }
 
