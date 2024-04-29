@@ -30,6 +30,9 @@
 		05E7ADBC2BDB0587000D85D7 /* Prayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7ADBB2BDB0587000D85D7 /* Prayer.swift */; };
 		05E7ADBE2BDB05F2000D85D7 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7ADBD2BDB05F2000D85D7 /* Album.swift */; };
 		05E7ADC02BDB0AE0000D85D7 /* CustomCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7ADBF2BDB0AE0000D85D7 /* CustomCorner.swift */; };
+		05E7ADC32BDEE440000D85D7 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7ADC22BDEE440000D85D7 /* Settings.swift */; };
+		05E7ADC52BDEF49A000D85D7 /* CalculationMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7ADC42BDEF49A000D85D7 /* CalculationMethod.swift */; };
+		05E7ADC82BDF8870000D85D7 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7ADC72BDF8870000D85D7 /* Formatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +80,9 @@
 		05E7ADBD2BDB05F2000D85D7 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		05E7ADBF2BDB0AE0000D85D7 /* CustomCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCorner.swift; sourceTree = "<group>"; };
 		05E7ADC12BDC5DAD000D85D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		05E7ADC22BDEE440000D85D7 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		05E7ADC42BDEF49A000D85D7 /* CalculationMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationMethod.swift; sourceTree = "<group>"; };
+		05E7ADC72BDF8870000D85D7 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +135,7 @@
 		05E7AD6C2BD851E8000D85D7 /* Al-noor-swift */ = {
 			isa = PBXGroup;
 			children = (
+				05E7ADC62BDF884E000D85D7 /* Helpers */,
 				05E7ADC12BDC5DAD000D85D7 /* Info.plist */,
 				05E7ADB22BD85B7E000D85D7 /* WebServices */,
 				05E7AD9C2BD85510000D85D7 /* Models */,
@@ -185,6 +192,7 @@
 				05E7ADA72BD858B2000D85D7 /* Qibla.swift */,
 				05E7ADB02BD85B5C000D85D7 /* QuranView.swift */,
 				05E7ADBB2BDB0587000D85D7 /* Prayer.swift */,
+				05E7ADC22BDEE440000D85D7 /* Settings.swift */,
 			);
 			path = TabViews;
 			sourceTree = "<group>";
@@ -197,6 +205,7 @@
 				05E7ADB52BD85BAF000D85D7 /* SurahModel.swift */,
 				05E7ADB72BD85BDE000D85D7 /* DetailSurahModel.swift */,
 				05E7ADBD2BDB05F2000D85D7 /* Album.swift */,
+				05E7ADC42BDEF49A000D85D7 /* CalculationMethod.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -224,6 +233,14 @@
 				05E7ADB92BD85BFD000D85D7 /* SurahDetailServices.swift */,
 			);
 			path = WebServices;
+			sourceTree = "<group>";
+		};
+		05E7ADC62BDF884E000D85D7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				05E7ADC72BDF8870000D85D7 /* Formatter.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,10 +381,12 @@
 			files = (
 				05E7ADA82BD858B2000D85D7 /* Qibla.swift in Sources */,
 				05E7AD9E2BD85525000D85D7 /* Points.swift in Sources */,
+				05E7ADC82BDF8870000D85D7 /* Formatter.swift in Sources */,
 				05E7AD702BD851E8000D85D7 /* ContentView.swift in Sources */,
 				05E7ADA02BD85572000D85D7 /* Tab.swift in Sources */,
 				05E7ADC02BDB0AE0000D85D7 /* CustomCorner.swift in Sources */,
 				05E7ADBA2BD85BFD000D85D7 /* SurahDetailServices.swift in Sources */,
+				05E7ADC32BDEE440000D85D7 /* Settings.swift in Sources */,
 				05E7AD9B2BD8539B000D85D7 /* IntroScreen.swift in Sources */,
 				05E7ADBC2BDB0587000D85D7 /* Prayer.swift in Sources */,
 				05E7ADBE2BDB05F2000D85D7 /* Album.swift in Sources */,
@@ -375,6 +394,7 @@
 				05E7ADAB2BD85941000D85D7 /* CompassMarkerView.swift in Sources */,
 				05E7ADA22BD855B0000D85D7 /* Home.swift in Sources */,
 				05E7ADB62BD85BAF000D85D7 /* SurahModel.swift in Sources */,
+				05E7ADC52BDEF49A000D85D7 /* CalculationMethod.swift in Sources */,
 				05E7ADB42BD85B96000D85D7 /* ApiServices.swift in Sources */,
 				05E7AD6E2BD851E8000D85D7 /* Al_noor_swiftApp.swift in Sources */,
 				05E7ADB12BD85B5C000D85D7 /* QuranView.swift in Sources */,

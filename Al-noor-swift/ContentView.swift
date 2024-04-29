@@ -23,9 +23,9 @@ struct ContentView: View {
                        QuranView()
                            .tag(Tab.quran)
                            .tabItem { Tab.quran.tabContent }
-//                       Settings()
-//                           .tag(Tab.settings)
-//                           .tabItem { Tab.settings.tabContent }
+                       Settings()
+                           .tag(Tab.settings)
+                           .tabItem { Tab.settings.tabContent }
                    }
         
     }

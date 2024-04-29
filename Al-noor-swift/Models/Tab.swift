@@ -12,7 +12,7 @@ enum Tab: String {
     case home = "Home"
     case qibla = "Qibla"
     case quran = "QuranView"
-   
+    case settings = "Settings"
     
     @ViewBuilder
     var tabContent:some View {
@@ -26,9 +26,9 @@ enum Tab: String {
         case .quran:
             Image(systemName: "book")
             Text(self.rawValue)
-//        case .settings:
-//            Image(systemName: "gearshape")
-//            Text(self.rawValue)
+        case .settings:
+            Image(systemName: "gearshape")
+            Text(self.rawValue)
         }
     }
 }

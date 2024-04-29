@@ -10,6 +10,12 @@ import Adhan
 import CoreLocation
 import UserNotifications
 
+extension Adhan.Prayer {
+    func stringValue() -> String {
+        return String(describing: self)
+    }
+}
+
 
 struct Home: View {
     @StateObject private var locationManager = LocationManager()
@@ -19,6 +25,9 @@ struct Home: View {
     @State private var currentPrayerName: String = ""
        @State private var nextPrayerName: String = ""
        @State private var timeUntilNextPrayer: String = ""
+    @AppStorage("methodCalculationPrayer") private var methodCalculationPrayer = CalculationMethod.muslimWorldLeague.rawValue
+    @State private var current: String = ""
+  
     
     @State private var city: String = ""
     
@@ -52,7 +61,7 @@ struct Home: View {
                                 .font(.callout)
                                 .fontWeight(.semibold)
                             
-                            Text(currentPrayerName)
+                            Text(capitalizeFirstLetter(currentPrayerName))
                                 .font(.largeTitle.bold())
                                 .multilineTextAlignment(.leading)
                         }
@@ -81,7 +90,7 @@ struct Home: View {
                                 .font(.callout)
                                 .fontWeight(.bold)
                             
-                            Text(nextPrayerName)
+                            Text(capitalizeFirstLetter(nextPrayerName))
                                 .font(.callout)
                                 .fontWeight(.bold)
                                
@@ -105,7 +114,7 @@ struct Home: View {
 //                        }
                         
                         Button(action: {
-                                       scheduleTestNotification()
+                                    //   scheduleTestNotification()
                                    }) {
                                        Text(city)
                                            .fontWeight(.bold)
@@ -138,6 +147,15 @@ struct Home: View {
                     }
                     
                 }
+//                    .onChange(of: methodCalculationPrayer) { newValue in
+//                                // React to changes in methodCalculationPrayer
+//                                guard let location = locationManager.lastKnownLocation else {
+//                                    return
+//                                }
+//                                
+//                                // Recalculate prayer times with the new calculation method
+//                                calculatePrayerTimes(at: location, with: newValue)
+//                            }
                 .onAppear {
                     requestNotificationAuthorization()
                     locationManager.requestLocation()
@@ -158,7 +176,7 @@ struct Home: View {
         
                 // Update the current time zone
                 if let timeZone = timeZone {
-                    print("timeZone: \(timeZone)")
+                 
                     self.currentTimeZone = timeZone
                 }
                 
@@ -169,9 +187,9 @@ struct Home: View {
                 updatePrayerInfo()
                 
                 // Optionally, you can use the city here
-                if let city = city {
-                   
-                }
+//                if let city = city {
+//                   
+//                }
                 
                 // Schedule notifications for each prayer time
                                 if let prayerTimes = self.prayerTimes {
@@ -192,14 +210,38 @@ struct Home: View {
         return nil
     }
     
+    private func calculatePrayerTimes(at location: CLLocation, with method: String) {
+        var params = CalculationMethod.parameters(for: method) ?? CalculationMethod.moonsightingCommittee.params
+           
+           // Customize params if needed
+           params.madhab = .shafi
+           params.adjustments.fajr = 0
+           params.adjustments.sunrise = 0
+           params.adjustments.dhuhr = 5
+           params.adjustments.maghrib = 0
+           params.adjustments.asr = 0
+           params.adjustments.isha = 0
+           params.fajrAngle = 18
+           params.ishaAngle = 18
+           
+           // Calculate prayer times for the current date
+           let currentDate = Calendar.current.dateComponents([.year, .month, .day], from: Date())
+           if let times = PrayerTimes(coordinates: Coordinates(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude),
+                                      date: currentDate,
+                                      calculationParameters: params) {
+               self.prayerTimes = times // Update prayer times
+           }
+       }
+       
+    
     private func requestNotificationAuthorization() {
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { success, error in
                 if let error = error {
                     print("Error requesting notification authorization: \(error.localizedDescription)")
                 } else if success {
-                    print("Notification authorization granted.")
+                  
                 } else {
-                    print("Notification authorization denied.")
+                
                 }
             }
         }
@@ -208,7 +250,8 @@ struct Home: View {
         let content = UNMutableNotificationContent()
         content.title = "Test Notification"
         content.body = "This is a test notification."
-        content.sound = UNNotificationSound.default
+//        content.sound = UNNotificationSound.default
+        content.sound = UNNotificationSound(named: UNNotificationSoundName("adhan.wav"))
         
         // Create a trigger to display the notification after 5 seconds
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
@@ -220,59 +263,68 @@ struct Home: View {
             if let error = error {
                 print("Error scheduling test notification: \(error.localizedDescription)")
             } else {
-                print("Test notification scheduled successfully.")
+               
             }
         }
     }
 
+
     
     private func updatePrayerInfo() {
            guard let times = prayerTimes else { return }
-           
-           let currentPrayer = getCurrentPrayer(times)
-           let nextPrayer = getNextPrayer(times)
-           
-           currentPrayerName = currentPrayer.prayerName
-           nextPrayerName = nextPrayer.prayerName
-           
-           let timeUntilNext = nextPrayer.time.timeIntervalSinceNow
-        timeUntilNextPrayer = formattedTimeUntilNext(timeUntilNext, nextFajrTime: nextFajrTime)
+
+        let currentPrayerObj = currentPrayers(times)
+   let nextPrayerObj  =   nextPrayers(times)
+        let nextPrayer = nextPrayerObj?.stringValue()
+        let currentPrayer = currentPrayerObj?.stringValue()
+       
+        let countdown = times.time(for: nextPrayerObj!)
+        let countdownString = formatCountdownTime(from: countdown)
         
-        if currentPrayer.prayerName == "Isha" {
-          
-                nextFajrTime = getNextFajrTime(from: times)
-            }
+       
+        
+          currentPrayerName = currentPrayer ?? ""
+        nextPrayerName = nextPrayer ?? ""
+        timeUntilNextPrayer = countdownString
+
+      
+        
+       
        }
+    
+    private func nextPrayers(_ times: PrayerTimes) -> (Adhan.Prayer? ) {
+        // Logic to retrieve the current prayer from `times`
+       
+        return times.nextPrayer()
+    }
+    
+    private func currentPrayers(_ times: PrayerTimes) -> (Adhan.Prayer? ) {
+        // Logic to retrieve the current prayer from `times`
+       
+        return times.currentPrayer()
+    }
     
     private func getCurrentPrayer(_ times: PrayerTimes) -> (prayerName: String, time: Date) {
         let currentTime = Date()
         let localCurrentTime = currentTime.addingTimeInterval(TimeInterval(currentTimeZone.secondsFromGMT()))
+       
         
+        let prayerEntries = prayerTimeEntries(from: times)
         // Iterate through prayer times to find the current prayer
-        for entry in prayerTimeEntries(from: times) {
-            // If the prayer time is after the current time, it's the current prayer
-            if entry.time > localCurrentTime {
-                return entry
-            }
-        }
+        for prayer in prayerEntries {
+              // Compare current time with each prayer time
+              if localCurrentTime < prayer.time {
+
+                  return prayer // Return the first upcoming prayer
+              }
+          }
         
+       
         // If no prayer time is found after the current time, return the last prayer of the day
         return prayerTimeEntries(from: times).last!
     }
         
-        private func getNextPrayer(_ times: PrayerTimes) -> (prayerName: String, time: Date) {
-            let currentTime = Date()
-            let localCurrentTime = currentTime.addingTimeInterval(TimeInterval(currentTimeZone.secondsFromGMT()))
-            
-            print("localCurrentTime: \(localCurrentTime)")
-            for entry in prayerTimeEntries(from: times) {
-                if entry.time > currentTime {
-                    return entry
-                }
-            }
-            
-            return prayerTimeEntries(from: times).first!
-        }
+      
     private func formattedTimeUntilNext(_ timeInterval: TimeInterval, nextFajrTime: Date?) -> String {
         let minutes = Int(abs(timeInterval) / 60)
         let hours = minutes / 60
@@ -298,17 +350,23 @@ struct Home: View {
     }
 
     private func getCurrentPrayerIcon() -> Image {
-        guard let currentPrayer = prayerTimes.flatMap(getCurrentPrayer) else {
-            // Return a default image if the current prayer is not available
-            return Image(systemName: "questionmark.square.fill")
-        }
+        guard let times = prayerTimes else {
+                // Handle the case where prayerTimes is nil
+                return Image(systemName: "questionmark.square.fill")
+            }
+
+
+     let currentPrayerObj = currentPrayers(times)
+
+     let currentPrayer = currentPrayerObj?.stringValue()
+
         
-        switch currentPrayer.prayerName {
-        case "Fajr":
+        switch currentPrayerName {
+        case "fajr":
             return Image(systemName: "sun.haze.fill")
-        case "Sunrise":
+        case "sunrise":
             return Image(systemName: "sunrise.fill")
-        case "Dhuhr":
+        case "dhuhr":
             return Image(systemName: "sun.max.fill")
         case "Asr":
             return Image(systemName: "sun.min.fill")
@@ -317,7 +375,7 @@ struct Home: View {
         case "Isha":
             return Image(systemName: "moon.stars.fill")
         default:
-            return Image(systemName: "questionmark.square.fill")
+            return Image(systemName: "sun.min.fill")
         }
     }
 
@@ -357,7 +415,9 @@ struct Home: View {
         let content = UNMutableNotificationContent()
         content.title = "Prayer Reminder"
         content.body = "It's time for \(entry.prayerName) prayer."
-        content.sound = UNNotificationSound.default
+     //   content.sound = UNNotificationSound.default
+        content.sound = UNNotificationSound(named: UNNotificationSoundName("adhan.wav"))
+        
         
         let calendar = Calendar.current
         let dateComponents = calendar.dateComponents([.hour, .minute], from: entry.time)
@@ -370,7 +430,7 @@ struct Home: View {
             if let error = error {
                 print("Error scheduling notification: \(error.localizedDescription)")
             } else {
-                print("Notification scheduled successfully for \(entry.prayerName) prayer.")
+               
             }
         }
     }
@@ -386,7 +446,7 @@ struct Home: View {
         
         geocoder.reverseGeocodeLocation(location) { placemarks, error in
             if let error = error {
-                print("Reverse geocoding error: \(error.localizedDescription)")
+               
                 completion(nil, nil)
             } else if let placemark = placemarks?.first {
                 let timeZone = placemark.timeZone
@@ -424,7 +484,8 @@ struct PrayerTimeRow: View {
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var prayerTimes: PrayerTimes?
     @Published var lastKnownLocation: CLLocation?
-    
+    @AppStorage("methodCalculationPrayer") private var methodCalculationPrayer = CalculationMethod.muslimWorldLeague.rawValue
+    @AppStorage("madhabCalculationPrayer") private var madhabCalculationPrayer = "shafi"
     private var locationManager = CLLocationManager()
     
     
@@ -451,30 +512,64 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         var nextDateComponents = currentDate
         nextDateComponents.day! += 1 // Increment day by 1 to get the next day
         
-        var params = CalculationMethod.moonsightingCommittee.params
-        params.madhab = .shafi
-        params.adjustments.fajr = 0
-        params.adjustments.sunrise = 0
-        params.adjustments.dhuhr = 5
-        params.adjustments.maghrib = 0
-        params.adjustments.asr = 3
-        params.adjustments.isha = 0
-        params.fajrAngle = 18
         
+        
+        if let params = CalculationMethod.parameters(for: methodCalculationPrayer) {
+           
+        } else {
+          
+        }
+        
+        let madhabParams =  madhabCalculationPrayer == "shafi" ? Madhab.shafi : Madhab.hanafi
+        print("COLIBRI \(madhabParams)")
+        let date = cal.dateComponents([.year, .month, .day], from: Date())
+        
+        var params = CalculationMethod.parameters(for: methodCalculationPrayer) ?? CalculationMethod.moonsightingCommittee.params
+//        var params =  CalculationMethod.ummAlQura.params
+        params.madhab = madhabParams
+        params.highLatitudeRule = .middleOfTheNight
+//        params.adjustments.fajr = 0
+//        params.adjustments.sunrise = 0
+//        params.adjustments.dhuhr = 5
+//        params.adjustments.maghrib = 0
+//        params.adjustments.asr = 0
+//        params.adjustments.isha = 0
+//        params.fajrAngle = 18
+//        params.ishaAngle = 18
+//
+//        if let times = PrayerTimes(coordinates: Coordinates(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude),
+        
+        print("params \(params)")
         if let times = PrayerTimes(coordinates: Coordinates(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude),
+                                   
+                                   
 //                                                                    59.3607, longitude: 18.0000),
         
         
         //                                   let coordinates = Coordinates(latitude: 59.3607, longitude: 18.0000)
-                                           date: currentDate,
+                                           date: date,
                                            calculationParameters: params) {
+            let formatter = DateFormatter()
+                formatter.timeStyle = .medium
+         
+
+//                print("fajr \(formatter.string(from: times.fajr))")
+//                print("sunrise \(formatter.string(from: times.sunrise))")
+//                print("dhuhr \(formatter.string(from: times.dhuhr))")
+//                print("asr \(formatter.string(from: times.asr))")
+//                print("maghrib \(formatter.string(from: times.maghrib))")
+//                print("isha \(formatter.string(from: times.isha))")
                     DispatchQueue.main.async {
                         self.prayerTimes = times
+                      
                     }
                     
               
                 }
         
+        
+       
+
         
         if let coordinates = manager.location?.coordinate {
                if let currentTimes = PrayerTimes(coordinates: Coordinates(latitude: coordinates.latitude, longitude: coordinates.longitude),

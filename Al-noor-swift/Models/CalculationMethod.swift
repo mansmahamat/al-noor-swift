@@ -4,15 +4,15 @@
 //
 //  Created by Mansour Mahamat-salle on 28/04/2024.
 //
+import Adhan
 
-import SwiftUI
-
-struct CalculationMethod: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+extension CalculationMethod {
+    // Function to get CalculationParameters for a given method string
+    static func parameters(for methodName: String) -> CalculationParameters? {
+        guard let method = CalculationMethod(rawValue: methodName) else {
+            return nil
+        }
+        
+        return method.params
     }
-}
-
-#Preview {
-    CalculationMethod()
 }
