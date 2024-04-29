@@ -26,13 +26,13 @@ struct IntroScreen: View {
                 .padding(.top, 65)
                 .padding(.bottom, 35)
             
-            VStack(alignment: .leading, spacing: 25, content: {
-                ForEach(points) { point in
-                    PointView(symbol: point.symbol, title: point.title, subtitle: point.subtitle)
-                }
-            })
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.horizontal, 15)
+//            VStack(alignment: .leading, spacing: 25, content: {
+//                ForEach(points) { point in
+//                    PointView(symbol: point.symbol, title: point.title, subtitle: point.subtitle)
+//                }
+//            })
+//            .frame(maxWidth: .infinity, alignment: .leading)
+//            .padding(.horizontal, 15)
             
             Spacer(minLength: 10)
             

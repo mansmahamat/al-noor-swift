@@ -11,7 +11,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var activeTab: Tab = .home
-    
+    @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
     var body: some View {
         TabView(selection: $activeTab) {
                        Home()
@@ -27,7 +27,7 @@ struct ContentView: View {
                            .tag(Tab.settings)
                            .tabItem { Tab.settings.tabContent }
                    }
-        
+        .preferredColorScheme(userTheme.colorScheme)
     }
 }
 

@@ -33,6 +33,7 @@
 		05E7ADC32BDEE440000D85D7 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7ADC22BDEE440000D85D7 /* Settings.swift */; };
 		05E7ADC52BDEF49A000D85D7 /* CalculationMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7ADC42BDEF49A000D85D7 /* CalculationMethod.swift */; };
 		05E7ADC82BDF8870000D85D7 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7ADC72BDF8870000D85D7 /* Formatter.swift */; };
+		05E7ADCA2BE0320D000D85D7 /* ThemeSwitcherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7ADC92BE0320D000D85D7 /* ThemeSwitcherView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		05E7ADC22BDEE440000D85D7 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		05E7ADC42BDEF49A000D85D7 /* CalculationMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationMethod.swift; sourceTree = "<group>"; };
 		05E7ADC72BDF8870000D85D7 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
+		05E7ADC92BE0320D000D85D7 /* ThemeSwitcherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSwitcherView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				05E7ADC72BDF8870000D85D7 /* Formatter.swift */,
+				05E7ADC92BE0320D000D85D7 /* ThemeSwitcherView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				05E7ADBE2BDB05F2000D85D7 /* Album.swift in Sources */,
 				05E7ADB82BD85BDE000D85D7 /* DetailSurahModel.swift in Sources */,
 				05E7ADAB2BD85941000D85D7 /* CompassMarkerView.swift in Sources */,
+				05E7ADCA2BE0320D000D85D7 /* ThemeSwitcherView.swift in Sources */,
 				05E7ADA22BD855B0000D85D7 /* Home.swift in Sources */,
 				05E7ADB62BD85BAF000D85D7 /* SurahModel.swift in Sources */,
 				05E7ADC52BDEF49A000D85D7 /* CalculationMethod.swift in Sources */,

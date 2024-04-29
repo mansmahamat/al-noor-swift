@@ -78,56 +78,57 @@ struct Home: View {
                             .frame(width: 20, height: 20)
                             .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                         
-                       
-                          
+                        
+                        
                         
                         VStack(alignment: .leading, spacing: 4) {
                             Text("Next Prayer")
                                 .font(.caption)
                                 .foregroundColor(.gray)
                             
-                            Text(timeUntilNextPrayer)
+                            Text("\(timeUntilNextPrayer) until")
                                 .font(.callout)
                                 .fontWeight(.bold)
                             
                             Text(capitalizeFirstLetter(nextPrayerName))
                                 .font(.callout)
                                 .fontWeight(.bold)
-                               
+                            
                         }
                         .foregroundColor(.primary)
                         .frame(maxWidth: .infinity,alignment: .leading)
                         
-//                        Button {
-//                            
-//                        } label: {
-//                            
-//                            Text(city)
-//                                .fontWeight(.bold)
-//                                .foregroundColor(.blue)
-//                                .padding(.vertical,8)
-//                                .padding(.horizontal,20)
-//                                .background{
-//                                    Capsule()
-//                                        .fill(.ultraThinMaterial)
-//                                }
-//                        }
-                        
-                        Button(action: {
-                                    //   scheduleTestNotification()
-                                   }) {
-                                       Text(city)
-                                           .fontWeight(.bold)
-                                           .foregroundColor(.blue)
-                                           .padding(.vertical,8)
-                                           .padding(.horizontal,20)
-                                           .background{
-                                               Capsule()
-                                                   .fill(.ultraThinMaterial)
-                                           }
-                                   }
-                                
-                        
+                        //                        Button {
+                        //
+                        //                        } label: {
+                        //
+                        //                            Text(city)
+                        //                                .fontWeight(.bold)
+                        //                                .foregroundColor(.blue)
+                        //                                .padding(.vertical,8)
+                        //                                .padding(.horizontal,20)
+                        //                                .background{
+                        //                                    Capsule()
+                        //                                        .fill(.ultraThinMaterial)
+                        //                                }
+                        //                        }
+                        if !city.isEmpty {
+                            Button(action: {
+                                //   scheduleTestNotification()
+                            }) {
+                                Text(city)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.blue)
+                                    .padding(.vertical,8)
+                                    .padding(.horizontal,20)
+                                    .background{
+                                        Capsule()
+                                            .fill(.ultraThinMaterial)
+                                    }
+                            }
+                            
+                            
+                        }
                     }
                     .padding([.horizontal,.bottom])
                 }
@@ -156,9 +157,11 @@ struct Home: View {
 //                                // Recalculate prayer times with the new calculation method
 //                                calculatePrayerTimes(at: location, with: newValue)
 //                            }
+                    
                 .onAppear {
                     requestNotificationAuthorization()
                     locationManager.requestLocation()
+                    updatePrayerInfo()
                 }
             }
         }
