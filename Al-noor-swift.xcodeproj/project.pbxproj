@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		052C81052BE171AF0026DE55 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052C81042BE171AF0026DE55 /* WidgetKit.framework */; };
+		052C81072BE171AF0026DE55 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052C81062BE171AF0026DE55 /* SwiftUI.framework */; };
+		052C810A2BE171AF0026DE55 /* Al_noor_widgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052C81092BE171AF0026DE55 /* Al_noor_widgetBundle.swift */; };
+		052C810C2BE171AF0026DE55 /* Al_noor_widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052C810B2BE171AF0026DE55 /* Al_noor_widget.swift */; };
+		052C810E2BE171AF0026DE55 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052C810D2BE171AF0026DE55 /* AppIntent.swift */; };
+		052C81102BE171B10026DE55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 052C810F2BE171B10026DE55 /* Assets.xcassets */; };
+		052C81142BE171B10026DE55 /* Al-noor-widgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 052C81032BE171AF0026DE55 /* Al-noor-widgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		052C811B2BE18B000026DE55 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052C811A2BE18B000026DE55 /* Color+Ext.swift */; };
 		05E7AD6E2BD851E8000D85D7 /* Al_noor_swiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7AD6D2BD851E8000D85D7 /* Al_noor_swiftApp.swift */; };
 		05E7AD702BD851E8000D85D7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7AD6F2BD851E8000D85D7 /* ContentView.swift */; };
 		05E7AD722BD851EA000D85D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05E7AD712BD851EA000D85D7 /* Assets.xcassets */; };
@@ -37,6 +45,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		052C81122BE171B10026DE55 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05E7AD622BD851E8000D85D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 052C81022BE171AF0026DE55;
+			remoteInfo = "Al-noor-widgetExtension";
+		};
 		05E7AD7C2BD851EA000D85D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05E7AD622BD851E8000D85D7 /* Project object */;
@@ -53,7 +68,31 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		052C81152BE171B10026DE55 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				052C81142BE171B10026DE55 /* Al-noor-widgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		052C81032BE171AF0026DE55 /* Al-noor-widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Al-noor-widgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		052C81042BE171AF0026DE55 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		052C81062BE171AF0026DE55 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		052C81092BE171AF0026DE55 /* Al_noor_widgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Al_noor_widgetBundle.swift; sourceTree = "<group>"; };
+		052C810B2BE171AF0026DE55 /* Al_noor_widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Al_noor_widget.swift; sourceTree = "<group>"; };
+		052C810D2BE171AF0026DE55 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
+		052C810F2BE171B10026DE55 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		052C81112BE171B10026DE55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		052C81192BE175AD0026DE55 /* Al-noor-widgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Al-noor-widgetExtension.entitlements"; sourceTree = "<group>"; };
+		052C811A2BE18B000026DE55 /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		05E7AD6A2BD851E8000D85D7 /* Al-noor-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Al-noor-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		05E7AD6D2BD851E8000D85D7 /* Al_noor_swiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Al_noor_swiftApp.swift; sourceTree = "<group>"; };
 		05E7AD6F2BD851E8000D85D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -88,6 +127,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		052C81002BE171AF0026DE55 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				052C81072BE171AF0026DE55 /* SwiftUI.framework in Frameworks */,
+				052C81052BE171AF0026DE55 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05E7AD672BD851E8000D85D7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -113,12 +161,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		052C81082BE171AF0026DE55 /* Al-noor-widget */ = {
+			isa = PBXGroup;
+			children = (
+				052C81092BE171AF0026DE55 /* Al_noor_widgetBundle.swift */,
+				052C810B2BE171AF0026DE55 /* Al_noor_widget.swift */,
+				052C810D2BE171AF0026DE55 /* AppIntent.swift */,
+				052C810F2BE171B10026DE55 /* Assets.xcassets */,
+				052C81112BE171B10026DE55 /* Info.plist */,
+				052C811A2BE18B000026DE55 /* Color+Ext.swift */,
+			);
+			path = "Al-noor-widget";
+			sourceTree = "<group>";
+		};
 		05E7AD612BD851E8000D85D7 = {
 			isa = PBXGroup;
 			children = (
+				052C81192BE175AD0026DE55 /* Al-noor-widgetExtension.entitlements */,
 				05E7AD6C2BD851E8000D85D7 /* Al-noor-swift */,
 				05E7AD7E2BD851EA000D85D7 /* Al-noor-swiftTests */,
 				05E7AD882BD851EA000D85D7 /* Al-noor-swiftUITests */,
+				052C81082BE171AF0026DE55 /* Al-noor-widget */,
 				05E7AD6B2BD851E8000D85D7 /* Products */,
 				05E7ADA42BD8566A000D85D7 /* Frameworks */,
 			);
@@ -130,6 +193,7 @@
 				05E7AD6A2BD851E8000D85D7 /* Al-noor-swift.app */,
 				05E7AD7B2BD851EA000D85D7 /* Al-noor-swiftTests.xctest */,
 				05E7AD852BD851EA000D85D7 /* Al-noor-swiftUITests.xctest */,
+				052C81032BE171AF0026DE55 /* Al-noor-widgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -215,6 +279,8 @@
 		05E7ADA42BD8566A000D85D7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				052C81042BE171AF0026DE55 /* WidgetKit.framework */,
+				052C81062BE171AF0026DE55 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -249,6 +315,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		052C81022BE171AF0026DE55 /* Al-noor-widgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 052C81182BE171B10026DE55 /* Build configuration list for PBXNativeTarget "Al-noor-widgetExtension" */;
+			buildPhases = (
+				052C80FF2BE171AF0026DE55 /* Sources */,
+				052C81002BE171AF0026DE55 /* Frameworks */,
+				052C81012BE171AF0026DE55 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Al-noor-widgetExtension";
+			productName = "Al-noor-widgetExtension";
+			productReference = 052C81032BE171AF0026DE55 /* Al-noor-widgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		05E7AD692BD851E8000D85D7 /* Al-noor-swift */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05E7AD8F2BD851EA000D85D7 /* Build configuration list for PBXNativeTarget "Al-noor-swift" */;
@@ -256,10 +339,12 @@
 				05E7AD662BD851E8000D85D7 /* Sources */,
 				05E7AD672BD851E8000D85D7 /* Frameworks */,
 				05E7AD682BD851E8000D85D7 /* Resources */,
+				052C81152BE171B10026DE55 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				052C81132BE171B10026DE55 /* PBXTargetDependency */,
 			);
 			name = "Al-noor-swift";
 			packageProductDependencies = (
@@ -315,6 +400,9 @@
 				LastSwiftUpdateCheck = 1530;
 				LastUpgradeCheck = 1530;
 				TargetAttributes = {
+					052C81022BE171AF0026DE55 = {
+						CreatedOnToolsVersion = 15.3;
+					};
 					05E7AD692BD851E8000D85D7 = {
 						CreatedOnToolsVersion = 15.3;
 					};
@@ -347,11 +435,20 @@
 				05E7AD692BD851E8000D85D7 /* Al-noor-swift */,
 				05E7AD7A2BD851EA000D85D7 /* Al-noor-swiftTests */,
 				05E7AD842BD851EA000D85D7 /* Al-noor-swiftUITests */,
+				052C81022BE171AF0026DE55 /* Al-noor-widgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		052C81012BE171AF0026DE55 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				052C81102BE171B10026DE55 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05E7AD682BD851E8000D85D7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -378,6 +475,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		052C80FF2BE171AF0026DE55 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				052C810C2BE171AF0026DE55 /* Al_noor_widget.swift in Sources */,
+				052C810A2BE171AF0026DE55 /* Al_noor_widgetBundle.swift in Sources */,
+				052C810E2BE171AF0026DE55 /* AppIntent.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05E7AD662BD851E8000D85D7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -389,6 +496,7 @@
 				05E7ADA02BD85572000D85D7 /* Tab.swift in Sources */,
 				05E7ADC02BDB0AE0000D85D7 /* CustomCorner.swift in Sources */,
 				05E7ADBA2BD85BFD000D85D7 /* SurahDetailServices.swift in Sources */,
+				052C811B2BE18B000026DE55 /* Color+Ext.swift in Sources */,
 				05E7ADC32BDEE440000D85D7 /* Settings.swift in Sources */,
 				05E7AD9B2BD8539B000D85D7 /* IntroScreen.swift in Sources */,
 				05E7ADBC2BDB0587000D85D7 /* Prayer.swift in Sources */,
@@ -426,6 +534,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		052C81132BE171B10026DE55 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 052C81022BE171AF0026DE55 /* Al-noor-widgetExtension */;
+			targetProxy = 052C81122BE171B10026DE55 /* PBXContainerItemProxy */;
+		};
 		05E7AD7D2BD851EA000D85D7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05E7AD692BD851E8000D85D7 /* Al-noor-swift */;
@@ -439,6 +552,67 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		052C81162BE171B10026DE55 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "Al-noor-widgetExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9LVZ4CKM52;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Al-noor-widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Al-noor-widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-LVZ4CKM52.Al-noor-swift.Al-noor-widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		052C81172BE171B10026DE55 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "Al-noor-widgetExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9LVZ4CKM52;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Al-noor-widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Al-noor-widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-LVZ4CKM52.Al-noor-swift.Al-noor-widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		05E7AD8D2BD851EA000D85D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -556,6 +730,7 @@
 		05E7AD902BD851EA000D85D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Al-noor-swift/Al_noor_swift.entitlements";
@@ -597,6 +772,7 @@
 		05E7AD912BD851EA000D85D7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Al-noor-swift/Al_noor_swift.entitlements";
@@ -728,6 +904,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		052C81182BE171B10026DE55 /* Build configuration list for PBXNativeTarget "Al-noor-widgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				052C81162BE171B10026DE55 /* Debug */,
+				052C81172BE171B10026DE55 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		05E7AD652BD851E8000D85D7 /* Build configuration list for PBXProject "Al-noor-swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -13,9 +13,9 @@ import Adhan
 struct Settings: View {
     
     @State private var showingSheet: Bool = false
-    @AppStorage("methodCalculationPrayer") private var methodCalculationPrayer = CalculationMethod.muslimWorldLeague.rawValue
+    @AppStorage("methodCalculationPrayer") private var methodCalculationPrayer = CalculationMethod.moonsightingCommittee.rawValue
     @AppStorage("madhabCalculationPrayer") private var madhabCalculationPrayer = "shafi"
-    
+    let encodedData  = UserDefaults(suiteName: "group.al-noor-swift")!.object(forKey: "currentPrayer") as? Data
     @State private var changeTheme: Bool = false
     
     @Environment(\.colorScheme) private var scheme
@@ -126,6 +126,9 @@ struct Settings: View {
 //                                               Link("\(Text("f").fontWeight(.bold).font(.system(size: 30)))      FaceBook ", destination: URL(string: "https://www.facebook.com/HarrowMosque")!)
 //                                                   .foregroundColor(.primary)
 //                                           }.listRowSeparator(.hidden)
+                                       }
+                                       .onAppear{
+                                           print("OILOILO \(encodedData)")
                                        }
                                        .listStyle(InsetGroupedListStyle()) // this has been renamed in iOS 14.*, as mentioned by @Elijah Yap
                                        .sheet(isPresented: $changeTheme, content: {

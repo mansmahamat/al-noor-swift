@@ -25,7 +25,7 @@ struct Home: View {
     @State private var currentPrayerName: String = ""
        @State private var nextPrayerName: String = ""
        @State private var timeUntilNextPrayer: String = ""
-    @AppStorage("methodCalculationPrayer") private var methodCalculationPrayer = CalculationMethod.muslimWorldLeague.rawValue
+    @AppStorage("methodCalculationPrayer") private var methodCalculationPrayer = CalculationMethod.moonsightingCommittee.rawValue
     @State private var current: String = ""
   
     
@@ -162,6 +162,9 @@ struct Home: View {
                     requestNotificationAuthorization()
                     locationManager.requestLocation()
                     updatePrayerInfo()
+                    
+                    
+                    
                 }
             }
         }
@@ -281,11 +284,41 @@ struct Home: View {
         let nextPrayer = nextPrayerObj?.stringValue()
         let currentPrayer = currentPrayerObj?.stringValue()
        
-        let countdown = times.time(for: nextPrayerObj!)
+        let countdown = times.time(for: nextPrayerObj ?? .isha)
         let countdownString = formatCountdownTime(from: countdown)
         
-       
+        func getPrayerTime(for prayer: String?) -> Date {
+            switch prayer {
+            case "fajr":
+                return times.fajr
+            case "sunrise":
+                return times.sunrise
+            case "dhuhr":
+                return times.dhuhr
+            case "asr":
+                return times.asr
+            case "maghrib":
+                return times.maghrib
+            case "isha":
+                return times.isha
+            default:
+                  return  times.isha
+            }
+        }
         
+        let currentPrayerTime = getPrayerTime(for: currentPrayer)
+        let currentTimePrayerTimeFormatted = formattedTime(currentPrayerTime)
+ 
+ 
+        
+        DispatchQueue.global().async {
+                            let suiteUserDefaults = UserDefaults(suiteName: "group.al-noor-swift")
+            suiteUserDefaults?.set(capitalizeFirstLetter(currentPrayer ?? ""), forKey: "currentPrayer")
+            suiteUserDefaults?.set(currentTimePrayerTimeFormatted, forKey: "currentTimePrayerTimeFormatted")
+
+                           
+                            suiteUserDefaults?.synchronize() // Optionally synchronize changes
+                        }
           currentPrayerName = currentPrayer ?? ""
         nextPrayerName = nextPrayer ?? ""
         timeUntilNextPrayer = countdownString
@@ -487,7 +520,7 @@ struct PrayerTimeRow: View {
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var prayerTimes: PrayerTimes?
     @Published var lastKnownLocation: CLLocation?
-    @AppStorage("methodCalculationPrayer") private var methodCalculationPrayer = CalculationMethod.muslimWorldLeague.rawValue
+    @AppStorage("methodCalculationPrayer") private var methodCalculationPrayer = CalculationMethod.moonsightingCommittee.rawValue
     @AppStorage("madhabCalculationPrayer") private var madhabCalculationPrayer = "shafi"
     private var locationManager = CLLocationManager()
     
@@ -542,7 +575,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 //
 //        if let times = PrayerTimes(coordinates: Coordinates(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude),
         
-        print("params \(params)")
+      
         if let times = PrayerTimes(coordinates: Coordinates(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude),
                                    
                                    
@@ -570,25 +603,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
               
                 }
         
-        
-       
 
-        
-        if let coordinates = manager.location?.coordinate {
-               if let currentTimes = PrayerTimes(coordinates: Coordinates(latitude: coordinates.latitude, longitude: coordinates.longitude),
-                                                 date: currentDate,
-                                                 calculationParameters: params),
-                  let nextDayTimes = PrayerTimes(coordinates: Coordinates(latitude: coordinates.latitude, longitude: coordinates.longitude),
-                                                 date: nextDateComponents,
-                                                 calculationParameters: params) {
-//                   DispatchQueue.main.async {
-//                       self.prayerTimes = (currentTimes, nextDayTimes)
-//                   }
-                  
-               }
-            
-           
-           }
            
        
     
